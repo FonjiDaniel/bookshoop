@@ -14,8 +14,7 @@ export default function BookDetails(props){
                     <p className="detail-info">Author: {props.book.author}</p>
                     <p className="detail-info">Description: {props.book.description}</p>
                     <p className="detail-info">Price: {props.book.price}</p>
-                    <p className="detail-info">Genre: {props.book.genre}</p>
-                    <p className="detail-info">Synopsis: {props.book.synopsis}</p>
+                    <p className="detail-info">Category: {props.book.category}</p>
                 </div>
             </div>
         </div>

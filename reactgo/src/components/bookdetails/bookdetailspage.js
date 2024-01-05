@@ -1,22 +1,36 @@
-import React from 'react';
 import { useParams } from 'react-router-dom';
-import booksData from '../booksdata';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import BookDetails from './bookdetails';
 
 const BookDetailPage = () => {
   const { id } = useParams(); // Get the book ID from the URL parameter
 
-  // Find the book with the matching ID from the booksData array
-  const selectedBook = booksData.find(book => book.id === parseInt(id, 10));
+  const [selectedBook, setSelectedBook] = useState(null);
 
-  if (!selectedBook) {
-    return <div>Book not found</div>;
-  }
+  useEffect(() => {
+    const fetchBookDetails = async () => {
+      try {
+        const response = await axios.get(`http://localhost:8000/api/books/${id}/`);
+        setSelectedBook(response.data);
+      } catch (error) {
+        console.error('Error fetching book details:', error);
+      }
+    };
+
+    if (id) {
+      fetchBookDetails();
+    }
+  }, [id]);
 
   return (
     <div>
       <h2>Book Details</h2>
-      <BookDetails book={selectedBook} /> {/* Render BookDetails component with the selected book */}
+      {selectedBook ? (
+        <BookDetails book={selectedBook} />
+      ) : (
+        <p>Loading...</p>
+      )}
     </div>
   );
 };

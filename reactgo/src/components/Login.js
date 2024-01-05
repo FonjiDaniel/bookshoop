@@ -1,4 +1,4 @@
-// Login.js
+import "./login.css";
 import React, { useState } from 'react';
 import axios from 'axios';
 
@@ -8,7 +8,7 @@ const Login = () => {
 
   const handleLogin = async () => {
     try {
-      const response = await axios.post('http://your-backend-api/login/', {
+      const response = await axios.post('http://localhost:8000/api/login/', {
         email,
         password,
       });
