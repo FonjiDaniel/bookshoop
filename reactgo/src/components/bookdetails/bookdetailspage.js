@@ -1,17 +1,17 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
-import BookDetails from './bookdetails'; 
+import booksData from '../booksdata';
+import BookDetails from './bookdetails';
 
 const BookDetailPage = () => {
   const { id } = useParams(); // Get the book ID from the URL parameter
 
-  // Logic to fetch book details based on the ID or use it directly in rendering BookDetails component
-  // For example:
-  const selectedBook = {
-    id: id, // Assuming book ID is passed through the URL
-    // Other book details fetched based on the ID
-    // title, author, etc.
-  };
+  // Find the book with the matching ID from the booksData array
+  const selectedBook = booksData.find(book => book.id === parseInt(id, 10));
+
+  if (!selectedBook) {
+    return <div>Book not found</div>;
+  }
 
   return (
     <div>

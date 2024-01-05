@@ -3,7 +3,7 @@ import "./bookdetails.css";
 
 export default function BookDetails(props){
     return(
-        <div className='book-details'>
+        <div className='book-detail'>
             <div className="book-info">
                 <div className="book-image">
                     <img src={props.book.image} alt={props.book.title} />
